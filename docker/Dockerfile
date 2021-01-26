@@ -1,0 +1,37 @@
+FROM alpine:latest
+LABEL maintainer="clamp <imclamp@foxmail.com>"
+ARG ASM_SCRIPTS_URL=https://github.com/lunnlew/AutoSignMachine
+ARG ASM_SCRIPTS_BRANCH=main
+ARG ASM_WRAPPER_URL=https://github.com/DJ-clamp/asm-wrapper
+ARG ASM_WRAPPER_BRANCH=main
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+    LANG=zh_CN.UTF-8 \
+    SHELL=/bin/bash \
+    PS1="\u@\h:\w \$ " \
+    ASM_DIR=/AutoSignMachine
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk update -f \
+    && apk upgrade \
+    && apk --no-cache add -f bash \
+    coreutils \
+    moreutils \
+    git \
+    wget \
+    curl \
+    nano \
+    tzdata \
+    perl \
+    openssl \
+    && rm -rf /var/cache/apk/* \
+    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone \
+    && git clone -b ${ASM_WRAPPER_BRANCH} ${ASM_WRAPPER_URL} ${ASM_DIR} \
+    && git clone -b ${ASM_SCRIPTS_BRANCH} ${ASM_SCRIPTS_URL} ${ASM_DIR}/scripts \
+    && cd ${ASM_DIR}/scripts \
+    && npm install
+
+COPY ${ASM_DIR}/docker/entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+WORKDIR ${ASM_DIR}
+ENTRYPOINT /entrypoint.sh
