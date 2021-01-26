@@ -1,6 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 crontab -r
+
+
 if [ ${enable_52pojie} ];then
   echo "10 13 * * *       node ${ASM_DIR}/scripts/index.js 52pojie --htVD_2132_auth=${htVD_2132_auth} --htVD_2132_saltkey=${htVD_2132_saltkey}" >> /etc/crontabs/root
 fi
@@ -20,6 +22,10 @@ fi
 if [ ${enable_10086} ];then
   echo "10 13 * * *       node ${ASM_DIR}/scripts/index.js 10086 --cookies ${cookies}" >> /etc/crontabs/root
 fi
+
+# set to update repository on every 30mins
+echo "30 * * * *    cd  ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/${ASM_SCRIPTS_BRANCH}" >> /etc/crontabs/root
+
 
 /usr/sbin/crond -c /etc/crontabs -f
 
