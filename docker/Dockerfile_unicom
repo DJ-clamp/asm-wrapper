@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM node:lts-alpine
 LABEL maintainer="clamp <imclamp@foxmail.com>"
 ARG ASM_SCRIPTS_URL=https://github.com/lunnlew/AutoSignMachine
 ARG ASM_SCRIPTS_BRANCH=main
@@ -32,5 +32,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && npm install \
     && cp -f ${ASM_DIR}/docker/entrypoint.sh /entrypoint.sh \
     && chmod 777 /entrypoint.sh
+
 WORKDIR ${ASM_DIR}
 ENTRYPOINT /entrypoint.sh

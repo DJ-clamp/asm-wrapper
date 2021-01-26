@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 crontab -r
 if [ ${enable_52pojie} ];then
