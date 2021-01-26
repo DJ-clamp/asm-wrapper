@@ -4,6 +4,7 @@ ARG ASM_SCRIPTS_URL=https://github.com/lunnlew/AutoSignMachine
 ARG ASM_SCRIPTS_BRANCH=main
 ARG ASM_WRAPPER_URL=https://github.com/DJ-clamp/asm-wrapper
 ARG ASM_WRAPPER_BRANCH=main
+ARG enable_unicom=true
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     LANG=zh_CN.UTF-8 \
     SHELL=/bin/bash \
