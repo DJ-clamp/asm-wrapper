@@ -1,7 +1,7 @@
 version: "3"
 services:
   # 如果需要多账号并发请求，可以新建一行asm_unicom 然后拷贝asm_unicom下面的代码，并修改container_name,hostname方便管理
-  asm_unicom:
+  asm_bilibili:
     image: xclamp/asm-wrapper:bilibili
     container_name: asm_bilibili
     restart: always
