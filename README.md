@@ -1,8 +1,8 @@
 ﻿# 🚢 asm-wrapper
 
-## 使用方法
+## Start the tutorial
 
-1.Linux 环境需要安装一下依赖
+1.Install depends on these Linux distributions
 
 - Debian
 
@@ -12,10 +12,10 @@
 
   `yum update && yum install git wget curl perl`
 
-  2.任意目录下创建一个新文件夹,执行命令
+  2.Created a new document ready for what do the next
 
 `wget --no-check-certificate https://raw.githubusercontent.com/DJ-clamp/asm-wrapper/main/docker-compose.yml`
 
-3.编辑配置`docker-compose.yml`将需要字段自行填写替换完整,需要多容器的可以多复制一条 service 出来
+3.Edit configuration file `docker-compose.yml` You must to fill in temporarily and try to replace it completely as well
 
-4.使用 `docker-compose up -d` 拉取 image 并且启动容器环境
+4.Using `docker-compose up -d` to pull a image and running.
