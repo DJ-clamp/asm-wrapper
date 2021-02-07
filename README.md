@@ -12,10 +12,10 @@
 
   `yum update && yum install git wget curl perl`
 
-  2.Created a new document ready for what do the next
+  2.Create a new document ready for what to do next
 
-`wget --no-check-certificate https://raw.githubusercontent.com/DJ-clamp/asm-wrapper/main/docker-compose.yml`
+  `wget --no-check-certificate https://raw.githubusercontent.com/DJ-clamp/asm-wrapper/main/docker-compose.yml`
 
-3.Edit configuration file `docker-compose.yml` You must to fill in temporarily and try to replace it completely as well
+  3.Edit the configuration file `docker-compose.yml` You must fill it in temporarily and try to replace it completely as well
 
-4.Using `docker-compose up -d` to pull a image and running.
+  4.Using `docker-compose up -d` pull an image and run.
