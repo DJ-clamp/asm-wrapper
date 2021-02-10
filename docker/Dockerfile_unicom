@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 LABEL maintainer="clamp <imclamp@foxmail.com>"
-ARG ASM_SCRIPTS_URL=https://github.com/DJ-clamp/AutoSignMachine
-ARG ASM_SCRIPTS_BRANCH=main
+ARG ASM_SCRIPTS_URL=https://github.com/DJ-clamp/BaseSation
+ARG ASM_SCRIPTS_BRANCH=dev
 ARG ASM_WRAPPER_URL=https://github.com/DJ-clamp/asm-wrapper
 ARG ASM_WRAPPER_BRANCH=main
 ARG enable_unicom=true

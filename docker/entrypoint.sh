@@ -24,7 +24,7 @@ if [ ${enable_10086} ];then
 fi
  
 # set to update repository on every 30mins
-echo "*/30 * * * *    cd  ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/main" >> /etc/crontabs/root
+echo "*/30 * * * *    cd  ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/dev" >> /etc/crontabs/root
 
 
 /usr/sbin/crond -c /etc/crontabs -f
