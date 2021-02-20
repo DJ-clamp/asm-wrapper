@@ -16,7 +16,7 @@ if [ ${enable_iqiyi} ];then
 fi
 
 if [ ${enable_unicom} ];then
-  echo "*/30 7-22 * * *       node ${ASM_DIR}/scripts/index.js unicom --cookies ${cookies} --user ${user} --password ${password} --appid ${appid}" >> /etc/crontabs/root
+  echo "*/30 7-22 * * *       node ${ASM_DIR}/scripts/index.js unicom" >> /etc/crontabs/root
 fi
 
 if [ ${enable_10086} ];then
@@ -24,7 +24,7 @@ if [ ${enable_10086} ];then
 fi
  
 # set to update repository on every 30mins
-echo "*/30 * * * *    cd  ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/dev" >> /etc/crontabs/root
+echo "*/30 * * * *    cd  ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/${ASM_SCRIPTS_BRANCH}" >> /etc/crontabs/root
 
 
 /usr/sbin/crond -c /etc/crontabs -f

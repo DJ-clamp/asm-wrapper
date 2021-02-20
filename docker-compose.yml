@@ -9,7 +9,7 @@ services:
     network_mode: "bridge"
     hostname: asm_unicom
     volumes:
-      - ./:/AutoSignMachine/config #同步脚本地址
+      - ./config:/AutoSignMachine/config #同步脚本地址
     environment:
       - enable_unicom=true #签到开关 false / true
       - user=123456 # 输入用户手机号
