@@ -12,6 +12,3 @@ services:
       - ./config:/AutoSignMachine/config #同步脚本地址
     environment:
       - enable_unicom=true #签到开关 false / true
-      - user=123456 # 输入用户手机号
-      - password=123456 #输入用户密码
-      - appid=FFFFFFFF #输入手机端APPID
