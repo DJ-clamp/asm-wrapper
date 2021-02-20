@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/${ASM_SCRIPTS_BRANCH}
 crontab -r
 if [ ${enable_52pojie} ];then
   echo "10 13 * * *       node ${ASM_DIR}/scripts/index.js 52pojie --htVD_2132_auth=${htVD_2132_auth} --htVD_2132_saltkey=${htVD_2132_saltkey}" >> /etc/crontabs/root
