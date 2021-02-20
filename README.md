@@ -14,8 +14,8 @@
 
 2.Create a new document ready for what to do next
 
-  `wget --no-check-certificate https://raw.githubusercontent.com/DJ-clamp/asm-wrapper/main/docker-compose.yml`
+      `wget --no-check-certificate https://raw.githubusercontent.com/DJ-clamp/asm-wrapper/main/docker-compose.yml`
 
-3.Edit the configuration file `docker-compose.yml` You must fill it in temporarily and try to replace it completely as well
+3.Create a new document named `config`
 
 4.Using `docker-compose up -d` pull an image and run.
