@@ -30,6 +30,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && git clone -b ${ASM_WRAPPER_BRANCH} ${ASM_WRAPPER_URL} ${ASM_DIR} \
     && git clone -b ${ASM_SCRIPTS_BRANCH} ${ASM_SCRIPTS_URL} ${ASM_DIR}/scripts \
     && cd ${ASM_DIR}/scripts \
+    && git fetch --all && git reset --hard origin/${ASM_SCRIPTS_BRANCH} \
     && npm install \
     && cp -f ${ASM_DIR}/docker/entrypoint.sh /entrypoint.sh \
     && chmod 777 /entrypoint.sh
