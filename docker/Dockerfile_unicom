@@ -12,7 +12,6 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     ASM_SCRIPTS_BRANCH=azmodan \
     ASM_DIR=/AutoSignMachine
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apt-add-repository ppa:mc3man/trusty-media -y \
     && apk update -f \
     && apk upgrade \
     && apk --no-cache add -f bash \
@@ -25,8 +24,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     tzdata \
     perl \
     openssl \
-    gcc \
-    g++ \
     libav-tools \
     libjpeg-turbo-dev \
     libpng-dev \
