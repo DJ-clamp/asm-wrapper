@@ -10,11 +10,10 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     SHELL=/bin/bash \
     PS1="\u@\h:\w \$ " \
     ASM_SCRIPTS_BRANCH=azmodan \
-    ASM_DIR=/AutoSignMachine
-# install graphicsmagick from source because install via apk not working
-ENV PKGNAME=graphicsmagick
-ENV PKGVER=1.3.35
-ENV PKGSOURCE=http://downloads.sourceforge.net/$PKGNAME/$PKGNAME/$PKGVER/GraphicsMagick-$PKGVER.tar.lz
+    ASM_DIR=/AutoSignMachine \
+    PKGNAME=graphicsmagick \
+    PKGVER=1.3.35 \
+    PKGSOURCE=http://downloads.sourceforge.net/$PKGNAME/$PKGNAME/$PKGVER/GraphicsMagick-$PKGVER.tar.lz
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
     && apk update -f \
     && apk upgrade \
