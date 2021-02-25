@@ -29,7 +29,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     openssl \
     gcc \
     g++ \
-    ffmpeg \
+    libav-tools \
     libjpeg-turbo-dev \
     libpng-dev \
     libtool \
