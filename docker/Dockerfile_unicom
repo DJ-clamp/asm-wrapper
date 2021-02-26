@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 LABEL maintainer="clamp <imclamp@foxmail.com>"
-ARG ASM_SCRIPTS_URL=https://github.com/DJ-clamp/BaseSation
+ARG ASM_SCRIPTS_URL=https://github.com/DJ-clamp/bandersnatch
 ARG ASM_SCRIPTS_BRANCH=azmodan
 ARG ASM_WRAPPER_URL=https://github.com/DJ-clamp/asm-wrapper
 ARG ASM_WRAPPER_BRANCH=main
