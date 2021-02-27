@@ -35,9 +35,9 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && git clone -b ${ASM_WRAPPER_BRANCH} ${ASM_WRAPPER_URL} ${ASM_DIR} \
-    && git clone -b ${ASM_SCRIPTS_BRANCH} ${ASM_SCRIPTS_URL} ${ASM_DIR}/scripts \
-    && cd ${ASM_DIR}/scripts \
-    && npm install \
+    # && git clone -b ${ASM_SCRIPTS_BRANCH} ${ASM_SCRIPTS_URL} ${ASM_DIR}/scripts \
+    # && cd ${ASM_DIR}/scripts \
+    # && npm install \
     && cp -f ${ASM_DIR}/docker/entrypoint.sh /entrypoint.sh \
     && chmod 777 /entrypoint.sh
 

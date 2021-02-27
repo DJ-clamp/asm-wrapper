@@ -12,3 +12,5 @@ services:
       - ./config:/AutoSignMachine/scripts/config #同步脚本地址
     environment:
       - enable_unicom=true #签到开关 false / true
+      - KEY= #私钥
+      - REPO_URL= #仓库地址
