@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+
 mkdir -p /root/.ssh  && echo -e ${KEY} > /root/.ssh/id_rsa  && chmod 600 /root/.ssh/id_rsa  && ssh-keyscan github.com > /root/.ssh/known_hosts && git clone -b ${ASM_SCRIPTS_BRANCH} ${REPO_URL} ${ASM_DIR}/scripts
 cd ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/${ASM_SCRIPTS_BRANCH}  && npm config set registry https://registry.npm.taobao.org &&  npm install
 
