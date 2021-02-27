@@ -13,7 +13,7 @@ echo "git pull拉取最新代码..."
 cd  ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/${ASM_SCRIPTS_BRANCH}
 echo "npm install 安装最新依赖"
 npm config set registry https://registry.npm.taobao.org 
-npm install --prefix ${ASM_DIR}/scripts
+npm install -s --prefix ${ASM_DIR}/scripts
 echo "------------------------------------------------执行定时任务任务shell脚本------------------------------------------------"
 crontab -r
 if [ ${enable_52pojie} ];then
