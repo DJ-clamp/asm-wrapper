@@ -6,6 +6,7 @@ mkdir -p /root/.ssh  && echo -e ${KEY} > /root/.ssh/id_rsa  && chmod 600 /root/.
 echo "设定远程仓库地址..."
 cd ${ASM_DIR}/scripts
 git remote set-url origin $REPO_URL
+git fetch --all
 git reset --hard
 echo "git pull拉取最新代码..."
 git -C ${ASM_DIR}/scripts pull --rebase
