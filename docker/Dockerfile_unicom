@@ -21,7 +21,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     tzdata \
     perl \
     openssl \
-    openssh \
+    openssh-client \
     libav-tools \
     libjpeg-turbo-dev \
     libpng-dev \
