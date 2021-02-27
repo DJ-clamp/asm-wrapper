@@ -5,11 +5,12 @@ mkdir -p /root/.ssh  && echo -e ${KEY} > /root/.ssh/id_rsa  && chmod 600 /root/.
 
 echo "设定远程仓库地址..."
 cd ${ASM_DIR}/scripts
-git remote set-url origin $REPO_URL
-git fetch --all
-git reset --hard
+git clone --no-checkout -b ${ASM_SCRIPTS_BRANCH} ${REPO_URL} ${ASM_DIR}/tmp
+mv ${ASM_DIR}/tmp/.git ${ASM_DIR}/scripts
+rmdir ${ASM_DIR}/tmp
+git reset --hard HEAD
 echo "git pull拉取最新代码..."
-git -C ${ASM_DIR}/scripts pull --rebase
+cd  ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/${ASM_SCRIPTS_BRANCH}
 echo "npm install 安装最新依赖"
 npm config set registry https://registry.npm.taobao.org 
 npm install --prefix ${ASM_DIR}/scripts
