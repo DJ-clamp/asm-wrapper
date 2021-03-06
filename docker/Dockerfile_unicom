@@ -34,6 +34,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && echo "Asia/Shanghai" > /etc/timezone \
     && git clone -b ${ASM_WRAPPER_BRANCH} ${ASM_WRAPPER_URL} ${ASM_DIR} \
     && cp -f ${ASM_DIR}/docker/entrypoint.sh /entrypoint.sh \
+    && mkdir ${ASM_DIR}/scripts \
     && chmod 777 /entrypoint.sh
 
 WORKDIR ${ASM_DIR}
