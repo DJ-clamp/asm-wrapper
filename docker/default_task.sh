@@ -54,7 +54,7 @@ fi
 if [ $ENABLE_UNICOM ]; then
   if [ -f $envFile ]; then
     cp -f $envFile ${ASM_DIR}/scripts/config/.env
-    if [ -f $UNICOM_JOB_CONFIG ]; then
+    if [ $UNICOM_JOB_CONFIG ]; then
       echo "找到联通细分任务配置故拆分，针对每个任务增加定时任务"
       minute=0
       hour=8
