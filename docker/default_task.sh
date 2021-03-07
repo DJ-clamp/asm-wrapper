@@ -15,7 +15,12 @@ if [ $1 ]; then
   if [ -f "${ASM_DIR}/scripts/AutoSignMachine.js" ]; then
     echo "仓库已经存在，跳过clone操作..."
   else
-    git clone --no-checkout -b ${ASM_SCRIPTS_BRANCH} ${REPO_URL} ${ASM_DIR}/scripts
+    if [  -d ${ASM_DIR}/tmp ];then
+      rmdir ${ASM_DIR}/tmp
+    fi
+    git clone --no-checkout -b ${ASM_SCRIPTS_BRANCH} ${REPO_URL} ${ASM_DIR}/tmp
+    mv ${ASM_DIR}/tmp/.git ${ASM_DIR}/scripts
+    rmdir ${ASM_DIR}/tmp
   fi
 fi
 
