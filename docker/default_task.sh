@@ -34,19 +34,19 @@ echo "定时任务文件路径为 ${mergedListFile}"
 echo '' >${mergedListFile}
 
 if [ $ENABLE_52POJIE ]; then
-  echo "10 13 * * * sleep \$((RANDOM % 120)); node /AutoSignMachine/index.js 52pojie --htVD_2132_auth=${htVD_2132_auth} --htVD_2132_saltkey=${htVD_2132_saltkey} >> ${ASM_DIR}/logs/52pojie.log 2>&1 &" >>${mergedListFile}
+  echo "10 13 * * * sleep \$((RANDOM % 120)); node ${ASM_DIR}/scripts/index.js 52pojie --htVD_2132_auth=${htVD_2132_auth} --htVD_2132_saltkey=${htVD_2132_saltkey} >> ${ASM_DIR}/logs/52pojie.log 2>&1 &" >>${mergedListFile}
 else
   echo "未配置启用52pojie签到任务环境变量ENABLE_52POJIE，故不添加52pojie定时任务..."
 fi
 
 if [ $ENABLE_BILIBILI ]; then
-  echo "*/30 7-22 * * * sleep \$((RANDOM % 120)); node /AutoSignMachine/index.js bilibili --username ${BILIBILI_ACCOUNT} --password ${BILIBILI_PWD} >> ${ASM_DIR}/logs/bilibili.log 2>&1 &" >>${mergedListFile}
+  echo "*/30 7-22 * * * sleep \$((RANDOM % 120)); node ${ASM_DIR}/scripts/index.js bilibili --username ${BILIBILI_ACCOUNT} --password ${BILIBILI_PWD} >> ${ASM_DIR}/logs/bilibili.log 2>&1 &" >>${mergedListFile}
 else
   echo "未配置启用bilibi签到任务环境变量ENABLE_BILIBILI，故不添加Bilibili定时任务..."
 fi
 
 if [ $ENABLE_IQIYI ]; then
-  echo "*/30 7-22 * * * sleep \$((RANDOM % 120)); node /AutoSignMachine/index.js iqiyi --P00001 ${P00001} --P00PRU ${P00PRU} --QC005 ${QC005}  --dfp ${dfp} >> ${ASM_DIR}/logs/iqiyi.log 2>&1 &" >>${mergedListFile}
+  echo "*/30 7-22 * * * sleep \$((RANDOM % 120)); node ${ASM_DIR}/scripts/index.js iqiyi --P00001 ${P00001} --P00PRU ${P00PRU} --QC005 ${QC005}  --dfp ${dfp} >> ${ASM_DIR}/logs/iqiyi.log 2>&1 &" >>${mergedListFile}
 else
   echo "未配置启用iqiyi签到任务环境变量ENABLE_IQIYI，故不添加iqiyi定时任务..."
 fi
@@ -60,7 +60,7 @@ if [ $ENABLE_UNICOM ]; then
       hour=8
       job_interval=6
       for job in $(paste -d" " -s - <$UNICOM_JOB_CONFIG); do
-        echo "$minute $hour * * * node /AutoSignMachine/index.js unicom --tryrun --tasks $job >>${ASM_DIR}/logs/unicom_$job.log 2>&1 &" >>${mergedListFile}
+        echo "$minute $hour * * * node ${ASM_DIR}/scripts/index.js unicom --tryrun --tasks $job >>${ASM_DIR}/logs/unicom_$job.log 2>&1 &" >>${mergedListFile}
         minute=$(expr $minute + $job_interval)
         if [ $minute -ge 60 ]; then
           minute=0
@@ -68,7 +68,7 @@ if [ $ENABLE_UNICOM ]; then
         fi
       done
     else
-      echo "*/30 7-22 * * * sleep \$((RANDOM % 120)); node /AutoSignMachine/index.js unicom >> ${ASM_DIR}/logs/unicom.log 2>&1 &" >>${mergedListFile}
+      echo "*/30 7-22 * * * sleep \$((RANDOM % 120)); node ${ASM_DIR}/scripts/index.js unicom >> ${ASM_DIR}/logs/unicom.log 2>&1 &" >>${mergedListFile}
     fi
   else
     echo "未找到 .env配置文件，故不添加unicom定时任务。"
