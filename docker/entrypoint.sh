@@ -19,7 +19,7 @@ npm install -s --prefix ${ASM_DIR}/scripts >/dev/null
 echo "------------------------------------------------执行定时任务任务shell脚本------------------------------------------------"
 crontab -r
 if [ ${enable_52pojie} ];then
-  echo "10 13 * * *       node ${ASM_DIR}/scripts/index.js 52pojie --htVD_2132_auth=${htVD_2132_auth} --htVD_2132_saltkey=${htVD_2132_saltkey}" >> /etc/crontabs/root
+  echo "$[RANDOM%1+59] $[RANDOM%22+12] * * *       node ${ASM_DIR}/scripts/index.js 52pojie --htVD_2132_auth=${htVD_2132_auth} --htVD_2132_saltkey=${htVD_2132_saltkey}" >> /etc/crontabs/root
 fi
 
 if [ ${enable_bilibili} ];then
@@ -35,7 +35,7 @@ if [ ${enable_unicom} ];then
 fi
 
 if [ ${enable_10086} ];then
-  echo "10 13 * * *       node ${ASM_DIR}/scripts/index.js 10086 --cookies ${cookies}" >> /etc/crontabs/root
+  echo "$[RANDOM%1+59] $[RANDOM%22+12] * * *       node ${ASM_DIR}/scripts/index.js 10086 --cookies ${cookies}" >> /etc/crontabs/root
 fi
  
 # set to update repository on every 30mins
