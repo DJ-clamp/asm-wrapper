@@ -15,3 +15,5 @@ services:
       - KEY=
       - REPO_URL=
       - ASM_SCRIPTS_BRANCH=
+      - notify_tele_bottoken=
+      - notify_tele_chatid=
