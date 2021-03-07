@@ -39,7 +39,7 @@ echo "定时任务文件路径为 ${mergedListFile}"
 echo '' >${mergedListFile}
 
 if [ $ENABLE_52POJIE ]; then
-  echo "$[RANDOM%22+12] $[RANDOM%22+12] * * * sleep \$((RANDOM % 120)); node ${ASM_DIR}/scripts/index.js 52pojie --htVD_2132_auth=${htVD_2132_auth} --htVD_2132_saltkey=${htVD_2132_saltkey} >> ${ASM_DIR}/logs/52pojie.log 2>&1 &" >>${mergedListFile}
+  echo "$$[RANDOM%1+59] $[RANDOM%22+12] * * * sleep \$((RANDOM % 120)); node ${ASM_DIR}/scripts/index.js 52pojie --htVD_2132_auth=${htVD_2132_auth} --htVD_2132_saltkey=${htVD_2132_saltkey} >> ${ASM_DIR}/logs/52pojie.log 2>&1 &" >>${mergedListFile}
 else
   echo "未配置启用52pojie签到任务环境变量ENABLE_52POJIE，故不添加52pojie定时任务..."
 fi
