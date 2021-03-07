@@ -14,8 +14,18 @@ jobs:
         with:
           publish: true
           imageName: xclamp/asm-wrapper
-          dockerFile: docker/Dockerfile_unicom
+          dockerFile: docker/Dockerfile.unicomless
           platform: linux/amd64,linux/arm64,linux/arm/v7
-          tag: unicom
+          tag: unicomless
           dockerUser: ${{ secrets.DOCKER_USERNAME }}
           dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: Build and publish image
+      #   uses: ilteoood/docker_buildx@master
+      #   with:
+      #     publish: true
+      #     imageName: xclamp/asm-wrapper
+      #     dockerFile: docker/Dockerfile_unicom
+      #     platform: linux/amd64,linux/arm64,linux/arm/v7
+      #     tag: unicom
+      #     dockerUser: ${{ secrets.DOCKER_USERNAME }}
+      #     dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
