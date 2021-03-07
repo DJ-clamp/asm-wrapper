@@ -13,7 +13,7 @@ jobs:
         uses: ilteoood/docker_buildx@master
         with:
           publish: true
-          imageName: akyakya/autosign
+          imageName: xclamp/asm-wrapper
           dockerFile: docker/Dockerfile.unicomless
           platform: linux/amd64,linux/arm64,linux/arm/v7
           tag: unicomless
