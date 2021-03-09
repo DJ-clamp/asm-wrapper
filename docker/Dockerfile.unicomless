@@ -7,7 +7,7 @@ ENV ASM_DIR=/AutoSignMachine \
     enable_unicom=true
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk --no-cache add -f git tzdata \
+    && apk --no-cache add -f git tzdata openssl \
     && rm -rf /var/cache/apk/* \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
