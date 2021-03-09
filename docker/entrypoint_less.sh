@@ -8,7 +8,7 @@ fi
 
 echo "git 拉取 asm-wrapper 最新代码..."
 cd ${ASM_DIR}/docker
-git reset --hard
+git reset --hard origin
 git pull
 
 echo "------------------------------------------------执行定时任务任务shell脚本------------------------------------------------"
