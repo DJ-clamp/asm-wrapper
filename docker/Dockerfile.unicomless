@@ -2,7 +2,7 @@ FROM alpine
 LABEL maintainer="clamp <imclamp@foxmail.com>"
 
 ENV ASM_DIR=/AutoSignMachine \
-    ASM_WRAPPER_URL=https://github.com/iouAkira/asm-wrapper.git \
+    ASM_WRAPPER_URL=https://github.com/DJ-clamp/asm-wrapper.git \
     ASM_WRAPPER_BRANCH=main \
     enable_unicom=true
 
