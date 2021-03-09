@@ -5,11 +5,11 @@ echo "设定远程仓库地址..."
 mkdir -p /root/.ssh  && echo -e ${KEY} > /root/.ssh/id_rsa  && chmod 600 /root/.ssh/id_rsa  && ssh-keyscan github.com > /root/.ssh/known_hosts
 cd ${ASM_DIR}/scripts
 if [  -d ${ASM_DIR}/tmp ];then
-  rmdir ${ASM_DIR}/tmp
+  rm -rf ${ASM_DIR}/tmp
 fi
 git clone --no-checkout -b ${ASM_SCRIPTS_BRANCH} ${REPO_URL} ${ASM_DIR}/tmp
 mv ${ASM_DIR}/tmp/.git ${ASM_DIR}/scripts
-rmdir ${ASM_DIR}/tmp
+rm -rf ${ASM_DIR}/tmp
 git reset --hard HEAD
 echo "git pull拉取最新代码..."
 cd  ${ASM_DIR}/scripts && git fetch --all && git reset --hard origin/${ASM_SCRIPTS_BRANCH}
