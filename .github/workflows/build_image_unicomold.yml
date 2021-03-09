@@ -16,7 +16,7 @@ jobs:
           imageName: xclamp/asm-wrapper
           dockerFile: docker/Dockerfile.unicom
           platform: linux/amd64,linux/arm64,linux/arm/v7
-          tag: unicomless
+          tag: unicom
           dockerUser: ${{ secrets.DOCKER_USERNAME }}
           dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
       # - name: Build and publish image
