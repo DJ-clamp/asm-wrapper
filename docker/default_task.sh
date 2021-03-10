@@ -32,7 +32,7 @@ git fetch --all
 git reset --hard origin/${ASM_SCRIPTS_BRANCH}
 
 echo "npm install 安装最新依赖"
-if [ ! -d ${ScriptsDir}/node_modules ]; then
+if [ ! -d ${ASM_DIR}/scripts/node_modules ]; then
     echo -e "检测到首次部署, 运行 npm install...\n"
     npm install -s --prefix ${ASM_DIR}/scripts >/dev/null
 else
