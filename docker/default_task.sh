@@ -23,7 +23,8 @@ if [ $1 ]; then
     rmdir ${ASM_DIR}/tmp
   fi
 fi
-
+echo -e "--------------------------------------------------------------\n"
+[ -f ${ASM_DIR}/scripts/package.json ] && PackageListOld=$(cat ${ASM_DIR}/scripts/package.json)
 echo "git pull拉取最新代码..."
 cd ${ASM_DIR}/scripts
 git reset --hard HEAD
@@ -31,7 +32,12 @@ git fetch --all
 git reset --hard origin/${ASM_SCRIPTS_BRANCH}
 
 echo "npm install 安装最新依赖"
-npm install -s --prefix ${ASM_DIR}/scripts >/dev/null
+if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
+    echo -e "检测到package.json有变化，运行 npm install...\n"
+    npm install -s --prefix ${ASM_DIR}/scripts >/dev/null
+else
+    echo -e "检测到package.json无变化，跳过...\n"
+fi
 
 mergedListFile="${ASM_DIR}/merged_list_file.sh"
 envFile="/root/.AutoSignMachine/.env"
