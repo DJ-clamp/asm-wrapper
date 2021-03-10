@@ -45,7 +45,7 @@ else
 fi
 
 
-mergedListFile="${ASM_DIR}/merged_list_file.sh"
+mergedListFile="${ASM_DIR}/config/merged_list_file.sh"
 envFile="/root/.AutoSignMachine/.env"
 echo "定时任务文件路径为 ${mergedListFile}"
 echo '' >${mergedListFile}
