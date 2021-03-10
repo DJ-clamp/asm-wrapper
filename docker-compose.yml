@@ -11,9 +11,9 @@ services:
     volumes:
       - ./config:/AutoSignMachine/scripts/config
       - ./cookies:/root/.AutoSignMachine
-      - ./logs:/logs #同步脚本地址
+      - ./logs:/AutoSignMachine/logs #同步脚本地址
     environment:
-      - enable_unicom=true #签到开关 false / true
+      - ENABLE_UNICOM=true #签到开关 false / true
       - KEY=
       - REPO_URL=
       - ASM_SCRIPTS_BRANCH=
