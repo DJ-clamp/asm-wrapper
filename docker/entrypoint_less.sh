@@ -6,7 +6,7 @@ if [ $1 ]; then
 	run_cmd=$1
 fi
 
-# echo "git 拉取 asm-wrapper 最新代码..."
+echo "git 拉取 asm-wrapper 最新代码..."
 cd ${ASM_DIR}/docker
 git fetch --all
 git reset --hard HEAD
