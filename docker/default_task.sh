@@ -39,9 +39,9 @@ else
   if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
     echo -e "检测到package.json有变化，运行 npm install...\n"
     npm install -s --prefix ${ASM_DIR}/scripts >/dev/null
-else
+  else
     echo -e "检测到package.json无变化，跳过...\n"
-fi
+  fi
 fi
 
 
