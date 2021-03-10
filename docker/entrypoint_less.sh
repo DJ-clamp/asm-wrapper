@@ -7,10 +7,10 @@ if [ $1 ]; then
 fi
 
 # echo "git 拉取 asm-wrapper 最新代码..."
-# cd ${ASM_DIR}/docker
-# git fetch --all
-# git reset --hard HEAD
-# git pull origin main
+cd ${ASM_DIR}/docker
+git fetch --all
+git reset --hard HEAD
+git pull origin main
 
 echo "------------------------------------------------执行定时任务任务shell脚本------------------------------------------------"
 #因为entrypoint.sh做为入口文件打包到镜像里面的更新调整不太方便，它的作用只是来更新我需要真正执行操作的default_task.sh
