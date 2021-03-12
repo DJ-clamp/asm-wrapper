@@ -46,6 +46,7 @@ fi
 
 
 mergedListFile="${ASM_DIR}/scripts/config/merged_list_file.sh"
+customTaskFile="${ASM_DIR}/scripts/config/custom_task.sh"
 envFile="/root/.AutoSignMachine/.env"
 echo "定时任务文件路径为 ${mergedListFile}"
 echo '' >${mergedListFile}
@@ -97,6 +98,17 @@ fi
 
 echo "增加默认脚本更新任务..."
 echo "21 */1 * * * entrypoint_less.sh >> ${ASM_DIR}/logs/default_task.log 2>&1" >>$mergedListFile
+
+echo "追加自定义脚本任务..."
+if [! -f $customTaskFile ]; then
+  echo "未发现自定义脚本开始,创建新文件..."
+  echo "" > $customTaskFile
+fi
+
+if [ -f $customTaskFile ]; then
+  cat  $customTaskFile >>$mergedListFile
+  echo "追加任务完成"
+fi
 
 echo "增加 |ts 任务日志输出时间戳..."
 sed -i "/\( ts\| |ts\|| ts\)/!s/>>/\|ts >>/g" $mergedListFile
