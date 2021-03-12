@@ -100,7 +100,7 @@ echo "增加默认脚本更新任务..."
 echo "21 */1 * * * entrypoint_less.sh >> ${ASM_DIR}/logs/default_task.log 2>&1" >>$mergedListFile
 
 echo "追加自定义脚本任务..."
-if [! -f $customTaskFile ]; then
+if [ ! -f $customTaskFile ]; then
   echo "未发现自定义脚本开始,创建新文件..."
   echo '' >$customTaskFile
 fi
