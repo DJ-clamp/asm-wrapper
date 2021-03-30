@@ -1,10 +1,28 @@
 #!/bin/sh
 set -e
 
+# bot更新了新功能的话只需要重启容器就完成更新
+function initPythonEnv() {
+  echo "开始安装运行jd_bot需要的python环境及依赖..."
+  # py3-multidict py3-yarl 为aiogram需要依赖的pip，但是alpine配置gcc编译环境才能安装这两个包，有点浪费，所以直接使用alpine提供的版本
+  # 注释一下省的自己忘了为什么
+  apk add --update python3-dev py3-pip py3-multidict py3-yarl
+  echo "开始安装jd_bot依赖..."
+  #测试
+  #cd /jd_docker/docker/bot
+  #合并
+  cd "$ASM_DIR/scripts/docker/bot"
+  pip3 install --upgrade pip
+  pip3 install -r requirements.txt
+  python3 setup.py install
+}
+
 #获取配置的自定义参数，
 if [ $1 ]; then
+  echo "容器启动，补充安装一些系统组件包..."
   #如果$1有值说明是容器启动调用的 执行配置系统以来包安装和id_rsa配置以及clone仓库的操作
   apk --no-cache add -f coreutils moreutils nodejs npm wget curl nano perl openssl openssh-client libav-tools libjpeg-turbo-dev libpng-dev libtool libgomp tesseract-ocr graphicsmagick
+  echo "npm更换为淘宝镜像源"
   npm config set registry https://registry.npm.taobao.org
   echo "配置仓库更新密钥..."
   mkdir -p /root/.ssh
@@ -30,11 +48,12 @@ cd ${ASM_DIR}/scripts
 git reset --hard HEAD
 git fetch --all
 git reset --hard origin/${ASM_SCRIPTS_BRANCH}
+git checkout ${ASM_SCRIPTS_BRANCH}
 
 echo "npm install 安装最新依赖"
 if [ ! -d ${ASM_DIR}/scripts/node_modules ]; then
     echo -e "检测到首次部署, 运行 npm install...\n"
-    npm install -s --prefix ${ASM_DIR}/scripts >/dev/null
+    npm install --loglevel error -s --prefix ${ASM_DIR}/scripts >/dev/null
 else
   if [[ "${PackageListOld}" != "$(cat package.json)" ]]; then
     echo -e "检测到package.json有变化，运行 npm install...\n"
@@ -44,6 +63,11 @@ else
   fi
 fi
 
+#更新到了最新bot代码
+#启动tg bot交互前置条件成立，开始安装配置环境
+if [ "$1" == "True" ]; then
+  initPythonEnv
+fi
 
 mergedListFile="${ASM_DIR}/scripts/config/merged_list_file.sh"
 customTaskFile="${ASM_DIR}/scripts/config/custom_task.sh"
@@ -108,6 +132,40 @@ fi
 if [ -f $customTaskFile ]; then
   cat  $customTaskFile >>$mergedListFile
   echo "追加任务完成"
+fi
+
+# echo "判断是否配置自定义shell执行脚本..."
+# if [ 0"$CUSTOM_SHELL_FILE" = "0" ]; then
+#   echo "未配置自定shell脚本文件，跳过执行。"
+# else
+#   if expr "$CUSTOM_SHELL_FILE" : 'http.*' &>/dev/null; then
+#     echo "自定义shell脚本为远程脚本，开始下在自定义远程脚本。"
+#     wget -O /jds/shell_script_mod.sh $CUSTOM_SHELL_FILE
+#     echo "下载完成，开始执行..."
+#     echo "#远程自定义shell脚本追加定时任务" >>$mergedListFile
+#     sh /jds/shell_script_mod.sh
+#     echo "自定义远程shell脚本下载并执行结束。"
+#   else
+#     if [ ! -f $CUSTOM_SHELL_FILE ]; then
+#       echo "自定义shell脚本为docker挂载脚本文件，但是指定挂载文件不存在，跳过执行。"
+#     else
+#       echo "docker挂载的自定shell脚本，开始执行..."
+#       echo "#docker挂载自定义shell脚本追加定时任务" >>$mergedListFile
+#       sh $CUSTOM_SHELL_FILE
+#       echo "docker挂载的自定shell脚本，执行结束。"
+#     fi
+#   fi
+# fi
+
+
+echo "判断是否配置了随即延迟参数..."
+if [ $RANDOM_DELAY_MAX ]; then
+  if [ $RANDOM_DELAY_MAX -ge 1 ]; then
+    echo "已设置随机延迟为 $RANDOM_DELAY_MAX , 设置延迟任务中..."
+    sed -i "/node/sleep \$((RANDOM % \$RANDOM_DELAY_MAX)) && node/g" $mergedListFile
+  fi
+else
+  echo "未配置随即延迟对应的环境变量，故不设置延迟任务..."
 fi
 
 echo "增加 |ts 任务日志输出时间戳..."
